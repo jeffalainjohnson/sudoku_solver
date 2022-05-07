@@ -123,3 +123,5 @@ class Cell:
 
 	def share_container(self, other_cell):
 		return self.get_row() == other_cell.get_row() or self.get_col() == other_cell.get_col() or self.get_box() == other_cell.get_box()
+
+	
