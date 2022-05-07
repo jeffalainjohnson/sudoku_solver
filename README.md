@@ -1,7 +1,7 @@
 # sudoku_solver
 Sudoku_solver.py is a Python 3.x program that solves sudoku puzzles.
 
-# H1 BACKGROUND & HISTORY
+# BACKGROUND & HISTORY
 
 Watching my wife Karen solve the sudoku puzzles in the daily SF Chronicle, sometime in the 2010s I started solving them myself and we developed a friendly competition.  At first I could solve only simple sudokus -- the ones the Chronicle rated 1, 2, or 3, but I soon learned deductive patterns for solving harder sudokus -- ones the Chronicle rated 4, 5, or 6.  (Note: I've never resorted to guessing and backtracking.)  It was a matter of learning to search for and spotting certain patterns in the grid.  At the time I didn't know that these patterns have common names; I only knew the patterns.  I got pretty good at recognizing them and at solving sudokus, but occasionally I would encounter ones I could not solve: I couldn't spot any of my known deductive patterns. I wasn't sure if I was missing familiar patterns or if there were more sophisticated deductive patterns I didn't yet know.
 
@@ -22,7 +22,7 @@ I am putting sudoku_solver.py on GitHub in the hopes that others will add more d
 Although some people consider puzzle solvers like sudoku_solver.py to be examples of artificial intelligence (AI), I do not.  We should not consider a puzzle-solving program to be "AI" simply because historically puzzle-solvers were classified as AI.  Sudoku_solver is no more intelligent than a program that calculates home mortgage payments or inverts matrices.  It uses simple search and compare methods to find static patterns that, via logic, allow digits to be eliminated from sudoku cells.
 
 
-# H1 HOW TO USE SUDOKU_SOLVER
+# HOW TO USE SUDOKU_SOLVER
 
 Run sudoku_solver like you would run any python program: "python3 sudoku_solver.py".  Sudoku_solver reads the sudoku-to-be-solved from the file sudoku.txt, which should be in the same directory as the program.
 
@@ -53,7 +53,7 @@ If the program encounters a sudoku error, such as an attempt to remove the last 
 2. there is a bug in the program.  Currently there are no known bugs in the program (Sudoku and Cell class definitions, main program, or deductive rules) and no sudoku errors have occurred for a long time.  However, if new deductive rules are added or other parts of the program are improved, new bugs could be introduced.
 
 
-# H1 HOW SUDOKU_SOLVER WORKS
+# HOW SUDOKU_SOLVER WORKS
 
 Sudoku_solver.py is implemented using a combination of object-oriented programming (OOP) and procedural programming.  It defines a Sudoku class and a Cell class.  The main program is mainly procedural but creates a Sudoku object (containing Cell objects) for each puzzle.  The deductive rules are also mainly procedural but operate on Sudoku and Cell objects.
 
@@ -64,7 +64,7 @@ The main() function initializes the passes-count and other housekeeping variable
 At the end of each pass through all specified rules, the current state of the sudoku is displayed, and the program checks to see if the sudoku is solved.  If so, it indicates that and quits.  If the sudoku has not been solved, the program checks if anything changed since the last pass.  If the last pass changed nothing, the program indicates that it is stuck; otherwise it proceeds to the next pass.
 
 
-# H1 ADDITIONALOBSERVATIONS
+# ADDITIONAL OBSERVATIONS
 
 Sudoku_solver applies its deductive production rules -- those that have been turned ON for a given problem -- repeatedly in a series of passes.  One would expect harder sudokus to require more passes for the program to solve.
 
@@ -103,7 +103,7 @@ Sometimes a deductive rule triggers with no effect: any options it could elimina
 Therefore, sudoku_solver contains many inefficiencies: it spends time looking for patterns that can have no effect on the state of the puzzle.  However, since it solves puzzles (or gets stuck) in seconds or fractions thereof, there isn't much impetus to eliminate its inefficiencies.
  
 
-References
+# References
 
 1. Sudoku Essentials (undated), "How to Identify Sudoku X-Wing Pattern", https://sudokuessentials.com/x-wing/
 
@@ -116,7 +116,7 @@ References
 5. Norvig, Peter (C. 2008?), "Solving Every Sudoku Puzzle", http://norvig.com/sudoku.html
 
 
-===CANNOT SOLVE!!!======
+# CANNOT SOLVE!!!
 
 Rules 012345678
 -------7-
