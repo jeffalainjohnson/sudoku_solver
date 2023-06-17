@@ -70,9 +70,32 @@ Sudoku_solver applies its deductive production rules -- those that have been tur
 
 In testing sudoku_solver on many problems published in the SF Chronicle and on sudoku websites, I have found that if the rules the program is using are held constant, there is only a weak correlation between a problem's rated difficulty and the number of passes the program needs to solve it.  Higher-rated problems have slight tendency to require more passes.  However, with most of its rules engaged, sudoku_solver solves some problems rated 6 by the SF Chronicle in 2-3 passes while taking 5-6 to solve problems the Chronicle rates as 4 or 5.  The same is true of puzzles published on sudoku websites.
 
-Users can select which rules the program will use for a given sudoku.  The only required rule is the most basic sudoku rule -- cells with only one digit in them rule out those options elsewhere in the same container (Rule O in sudoku_solver; aka Naked Single).  The remaining rules are optional.  One might expect that the more rules are made available to the program, the fewer passes it would need to solve sudokus.  Again, that is somewhat true, but the correlation is weak.  The program solves some sudokus -- even some rated as hard -- in about the same number of passes even if restricted to only the simplest deductive rules.  For example, sudoku_solver solves the following sudoku, rated 5/6 (hard) by the SF Chronicle, in 5 passes with even with only its two most basic rules (see below):
+Users can select which rules the program will use for a given sudoku.  The only required rule is the most basic sudoku rule -- cells with only one digit in them rule out those options elsewhere in the same container (Rule O in sudoku_solver; aka Naked Single).  The remaining rules are optional.  One might expect that the more rules are made available to the program, the fewer passes it would need to solve sudokus.  Again, that is somewhat true (see below).
 
-Rules 0124
+Rules 012
+7---31-6-
+---9-7-2-
+----6-41-
+-53---7--
+----4----
+--1---63-
+-16-9----
+-9-2-4---
+-2-31---8
+Hard (SF Chronicle 5, 6/16/2023)
+• solved in 4 passes with R0+R1+R2+R3+R4+R5+R6+R7+R8
+• solved in 4 passes with R0+R1+R2+R3+R4+R5+R6+R7
+• solved in 4 passes with R0+R1+R2+R3+R4+R5+R6
+• solved in 4 passes with R0+R1+R2+R3+R4+R5
+• solved in 5 passes with R0+R1+R2+R3+R5
+• solved in 6 passes with R0+R1+R2+R3+R4
+• solved in 7 passes with R0+R1+R2+R3
+• solved in 7 passes with R0+R1+R2
+• solved in 8 passes with R0+R1
+
+However, the correlation is weak.  The program solves some sudokus -- even some rated as hard -- in about the same number of passes even if restricted to only the simplest deductive rules.  For example, sudoku_solver solves the following sudoku, rated 5/6 (hard) by the SF Chronicle, in 5 passes with even with only its two most basic rules (see below):
+
+Rules 012
 7-2384---
 --17-63--
 -4-------
