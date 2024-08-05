@@ -57,7 +57,7 @@ HOW SUDOKU_SOLVER WORKS
 
 Sudoku_solver.py is implemented using a combination of object-oriented programming (OOP) and procedural programming.  It defines a Sudoku class and a Cell class.  The main program is mainly procedural but creates a Sudoku object (containing Cell objects) for each puzzle.  The deductive rules are also mainly procedural but operate on Sudoku and Cell objects.
 
-The program starts by recording which rules are to be used on this run, then creating a Sudoku puzzle, reading the data file, and filling in the cells of the sudoku.  Empty cells are initialized to a list of all possible digits [0-9].  Known cells are initialized to a list of one possible digit.
+The program starts by recording which rules are to be used on this run, then creating a 9x9 Sudoku grid, reading the data file, and filling in the cells of the grid.  Empty cells are initialized to a list of all possible digits [0-9].  Known cells are initialized to a list of one possible digit.
 
 The main() function initializes the passes-count and other housekeeping variables and begins applying rules that are to be used on this run, from the most basic to the most complex.  Each rule looks for its pattern.  Some rules apply to containers: rows, columns, or boxes, and so are applied row-by-row, column-by-column, or box-by-box.  Other rules apply to the entire grid.  If a rule finds its pattern, it eliminates possible options from certain cells of the sudoku.  If a rule changes any cell in the sudoku, it marks the sudoku as changed.
 
