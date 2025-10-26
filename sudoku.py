@@ -2,9 +2,9 @@ class Sudoku:
 
 	def __init__(self, ifile):
 		# Initialize sudoku with all numbers possible in all cells
-		self.rows = [[],[],[],[],[],[],[],[],[]]	# List of rows; each is a list of Cells
-		self.cols = [[],[],[],[],[],[],[],[],[]]	# list of cols; each is a list of Cells
-		self.boxes = [[],[],[],[],[],[],[],[],[]]	# List of boxes; each is a list of Cells
+		self.rows = [[],[],[],[],[],[],[],[],[]]	# List of rows; each row is a list of Cells
+		self.cols = [[],[],[],[],[],[],[],[],[]]	# list of cols; each col is a list of Cells
+		self.boxes = [[],[],[],[],[],[],[],[],[]]	# List of boxes; each box is a list of Cells
 		self.__changed = False
 		
 		for i in range(9):
@@ -35,6 +35,9 @@ class Sudoku:
 	def get_boxes(self):
 		return self.boxes
 
+	def get_cell(self, r, c):
+		return self.rows[r][c]
+
 	def clear_changed(self):
 		self.__changed = False
 
@@ -60,7 +63,7 @@ class Sudoku:
 					print("|", end="")
 			print()
 			if (i + 1) % 3 == 0:
-				print("-----------------------------")
+				print("--------------------------------------------")
 		print()
 
 
@@ -73,7 +76,7 @@ class Cell:
 
 	def __str__(self):
 		return str(self.__possible)
-#		return str("{}: ({},{})".format(self.__possible, self.__row_num, self.__col_num))
+#		return str("{}:({},{}) ".format(self.__possible, self.__row_num, self.__col_num))
 
 	def get_possible(self):
 		return self.__possible
@@ -86,7 +89,7 @@ class Cell:
 			self.__possible = new_possible
 
 	def remove_possible(self, l):
-		if self.number_of_options() == 1 and self.__possible[0] in l:
+		if self.number_of_options() == 1 and self.__possible[0] in l:  #This if may be redundant with the elif below
 			print("!!! Attempt to remove last option!!!")
 			print("Possible numbers:", self.__possible, "numbers to remove:", l)
 			raise Exception ("Houston, we have a problem!")
@@ -121,7 +124,7 @@ class Cell:
 	def get_box_cell_index(self):								# not currently used
 		return (self.__row_num % 3) * 3 + (self.__col_num % 3)
 
-	def share_container(self, other_cell):
-		return self.get_row() == other_cell.get_row() or self.get_col() == other_cell.get_col() or self.get_box() == other_cell.get_box()
+	def sees(self, other_cell):
+		return self.__row_num == other_cell.get_row() or self.__col_num == other_cell.get_col() or self.get_box() == other_cell.get_box()
 
 	
