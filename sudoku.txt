@@ -1,4 +1,472 @@
-Rules 0126
+Rules 0123456789
+-9-4-----
+----9-6--
+4-8--592-
+6-7--43--
+8-------7
+--29--4-1
+-361--8-5
+--1-8----
+-----9-3-
+HARD (needs skyscraper method)
+• Cannot solve with R0+R1+R2+R3+R4+R5+R6+R7+R8
+• Cannot solve with Skyscraper v1 (stuck on pass 4)
+
+Rules 0123456789
+23-8--64-
+6-------2
+-7---29--
+1862-----
+----4----
+-----5278
+--14---3-
+7-------1
+-64--1-29
+HARD (needs skyscraper method)
+• Cannot solve with R0+R1+R2+R3+R4+R5+R6+R7+R8
+• Cannot solve with Skyscraper v1 (stuck on pass 5)
+
+======Can solve with skyscraper=====
+
+Rules 0123456789
+9-4-6--8-
+8---1---2
+1--9---7-
+4-----5--
+-16------
+7---31---
+-3---7-9-
+6--2-4---
+---------
+Super hard (Sudoku.com "expert"; requires Y-wing and skyscraper)
+• solved in 5 passes with R0+R1+R2+R3+R4+R5+R6+R7+R8+R9
+• Cannot solve with R0+R1+R2+R3+R4+R5+R6+R7+R8
+
+Rules 0123456789
+---4836--
+--5----4-
+---75-13-
+-----671-
+--9---4--
+-671-----
+-82-94---
+-9----5--
+--4627---
+HARD (requires skyscraper method)
+• solved in 5 passes with R0+R1+R2+R3+R4+R5+R6+R7+R8+R9
+• Cannot solve with R0+R1+R2+R3+R4+R5+R6+R7+R8
+
+Rules 0123456789
+-------7-
+--48-----
+1-946--3-
+4---1----
+-5--2----
+-1-3-64--
+-------98
+5-----6-7
+2--1-----
+Super hard (Sudoku.com "expert"; requires skyscraper)
+• solved in 8 passes with R0+R1+R2+R3+R4+R5+R6+R7+R8+R9
+• Cannot solve with R0+R1+R2+R3+R4+R5+R6+R7+R8
+
+==========
+
+Rules 012345678
+----6-7--
+4----58-3
+--5--3-6-
+-1---9---
+--7-2-4--
+---1---2-
+-2-7--3--
+1-35----9
+--6-4----
+Very hard (https://www.sudokuessentials.com/support-files/sudoku-very-hard-3.pdf)
+Requires Y-wing.
+• solved in 7 passes with R0+R1+R2+R3+R4+R5+R6+R7+R8
+* solved in 6 passes with R0+R1+R2+R3+R4+R5+R6+R8 !!! Possible bug? (fewer w/out R7)
+• Cannot solve without R8
+
+Rules 012345678
+------9--
+5------18
+-28--7-4-
+---1-5--9
+-9--3--6-
+4--9-2---
+-3-5--62-
+28------1
+--6------
+• solved in 12 passes with R0+R1+R2+R3+R4
+• solved in 8 passes with R0+R1+R2+R3+R4+R5
+• solved in 7 passes with R0+R1+R2+R3+R4+R5+R6
+• solved in 7 passes with R0+R1+R2+R3+R4+R5+R6+R7
+• solved in 6 passes with R0+R1+R2+R3+R4+R5+R6+R7+R8
+
+Rules 01234678
+--4-265--
+--------7
+--8--4-92
+--3----6-
+---592---
+-9----4--
+54-9--7--
+3--------
+--241-9--
+HARD (SF Chronicle 6, 10/17/25)
+• solved in 5 passes with R0+R1+R2+R3+R4+R5+R6
+• solved in 6 passes with R0+R1+R2+R3+R4+R5
+• Cannot solve with R0+R1+R2+R3+R4
+• solved in 9 passes with R0+R1+R2+R3+R4+R6
+• solved in 8 passes with R0+R1+R2+R3+R4+R6+R7
+
+Rules 012345
+-2-3-5---
+71-42----
+----6-15-
+-4--9-6--
+5-------4
+--2-4--1-
+-31-7----
+----52-79
+---8-6-4-
+Hard (SF Chronicle 5, 12/27/2024)
+• solved in 5 passes with R0+R1+R2+R3+R4+R5+R6+R7+R8
+
+Rules 012345678
+-1----9--
+3---9--6-
+-2--7---8
+1--35----
+4--7-1--5
+----46--2
+6---3--8-
+-3--2---1
+--8----4-
+Hard (SF Chronicle 5, 11/1/2024)
+• solved in 5 passes with R0+R1+R2+R3+R4+R5+R6+R7+R8
+• solved in 5 passes with R0+R1+R2+R3+R4+R5
+• Cannot solve without R5
+
+Rules 0123456789
+---285-61
+------94-
+----96--5
+-8--39---
+-4--2--5-
+---57--1-
+5--94----
+-96------
+21-863---
+Hard (SF Chronicle 5, 12/27/2024)
+• solved in 5 passes with R0+R1+R2+R3+R4
+• cannot solve without rule 4
+
+Rules 0123
+9----2-6-
+----915-3
+----8-92-
+-2--7---5
+--6---7--
+7---5--1-
+-19-2----
+2-391----
+-8-5----2
+Hard (SF Chronicle 5, 8/16/2024)
+• solved in 5 passes with R0+R1+R2+R3+R4+R5+R6+R7+R8
+• solved in 5 passes with R0+R1+R2+R3+R4+R5
+• solved in 5 passes with R0+R1+R2+R3+R4
+• solved in 5 passes with R0+R1+R2+R3
+
+
+Rules 012345678
+--5-2-6--
+-9---4-1-
+2--5----3
+--6-3----
+---8-1---
+----9-4--
+3----2--7
+-1-9---5-
+--4-6-8--
+Super hard (Cracking the Cryptic, https://www.youtube.com/watch?v=ynkkMxQPUpk)
+• Cannot solve with R0+R1+R2+R3+R4+R5+R6+R7+R8
+
+Rules 01235678
+72--1---3
+35--7--4-
+------2--
+-9---7---
+4---6---1
+---8---6-
+--7------
+-1--4--25
+6---2--97
+Hard (source unknown)
+• solved in 5 passes with R0+R1+R2+R3+R4+R5+R6+R7+R8
+• solved in 5 passes with R0+R1+R2+R3+R4+R5+R6+R7
+• solved in 5 passes with R0+R1+R2+R3+R4+R5+R6
+• solved in 5 passes with R0+R1+R2+R3+R4+R5
+• solved in 7 passes with R0+R1+R2+R3+R4
+• cannot solve without R4
+
+Rules 0123
+83--45---
+-----7-6-
+-----8-53
+---51-3-4
+----7----
+9-5-36---
+19-4-----
+-6-7-----
+---95--28
+Hard (SF Chronicle 5, 7/29/2023)
+• solved in 4 passes with R0+R1+R2+R3+R4+R5+R6+R7+R8
+• solved in 4 passes with R0+R1+R2+R3+R4+R5+R6+R7
+• solved in 4 passes with R0+R1+R2+R3+R4+R5+R6
+• solved in 4 passes with R0+R1+R2+R3+R4+R5
+• solved in 5 passes with R0+R1+R2+R3+R5
+• solved in 6 passes with R0+R1+R2+R3+R4
+• cannot solve without R4 and R5 (can solve with either 4 or 5)
+
+Rules 01235678
+72--1---3
+35--7--4-
+------2--
+-9---7---
+4---6---1
+---8---6-
+--7------
+-1--4--25
+6---2--97
+Hard (SF Chronicle 5, 7/7/2023)
+• solved in 5 passes with R0+R1+R2+R3+R4+R5+R6+R7+R8
+• solved in 5 passes with R0+R1+R2+R3+R4+R5+R6+R7
+• solved in 5 passes with R0+R1+R2+R3+R4+R5+R6
+• solved in 5 passes with R0+R1+R2+R3+R4+R5
+• solved in 7 passes with R0+R1+R2+R3+R4
+• cannot solve with R0+R1+R2+R3+R5
+• cannot solve without R4
+
+
+Rules 012
+7---31-6-
+---9-7-2-
+----6-41-
+-53---7--
+----4----
+--1---63-
+-16-9----
+-9-2-4---
+-2-31---8
+Hard (SF Chronicle 5, 6/16/2023)
+• solved in 4 passes with R0+R1+R2+R3+R4+R5+R6+R7+R8
+• solved in 4 passes with R0+R1+R2+R3+R4+R5+R6+R7
+• solved in 4 passes with R0+R1+R2+R3+R4+R5+R6
+• solved in 4 passes with R0+R1+R2+R3+R4+R5
+• solved in 5 passes with R0+R1+R2+R3+R5
+• solved in 6 passes with R0+R1+R2+R3+R4
+• solved in 7 passes with R0+R1+R2+R3
+• solved in 7 passes with R0+R1+R2
+• solved in 8 passes with R0+R1
+
+Rules 012345678
+9---814--
+-5--6-9-7
+----9-2--
+4---2--5-
+---4-8---
+-8--5---4
+--9-1----
+8-7-3--6-
+--194---3
+Hard (SF Chronicle 5, 3/17/2023)
+• solved in 5 passes with R0+R1+R2+R3+R4+R5+R6+R7+R8
+• solved in 5 passes with R0+R1+R2+R3+R4+R5+R6+R7
+• solved in 5 passes with R0+R1+R2+R3+R4+R5+R6
+• solved in 5 passes with R0+R1+R2+R3+R4+R5
+• solved in 5 passes with R0+R1+R2+R3+R4
+• cannot solve without R4
+
+
+Rules 012
+8-2-6----
+----17-9-
+-5--28-34
+--------3
+--6-4-1--
+4--------
+18-47--2-
+-3-89----
+----3-5-8
+• solved in 4 passes with R0+R1+R2+R3+R4+R5+R6+R7+R8
+• solved in 4 passes with R0+R1+R2+R3+R4+R5+R6+R7
+• solved in 4 passes with R0+R1+R2+R3+R4+R5+R6
+• solved in 4 passes with R0+R1+R2+R3+R4+R5
+• solved in 5 passes with R0+R1+R2+R3+R4
+• solved in 5 passes with R0+R1+R2+R3+R5
+• solved in 6 passes with R0+R1+R2+R3
+• solved in 6 passes with R0+R1+R2
+
+Rules 012345678
+----93---
+59--4--61
+------43-
+3---1--48
+---3-4---
+64--7---5
+-32------
+18--3--24
+---78----
+• solved in 6 passes with R0+R1+R2+R3+R4+R5+R6+R7+R8
+• solved in 6 passes with R0+R1+R2+R3+R4+R5+R6+R7
+• solved in 8 passes with R0+R1+R2+R3+R4+R5+R6
+• solved in 6 passes with R0+R1+R2+R3+R4+R5+R7
+• solved in 8 passes with R0+R1+R2+R3+R4+R5
+• solved in 9 passes with R0+R1+R2+R3+R4
+• solved in 8 passes with R0+R1+R2+R3+R5
+• solved in 9 passes with R0+R1+R2+R3
+• solved in 9 passes with R0+R1+R2
+• solved in 11 passes with R0+R1
+
+Rules 01234
+-----8---
+7-9-62---
+5-2-7-3--
+4----9---
+-7--8--5-
+---4----3
+--3-9-2-5
+---64-7-8
+---2-----
+• solved in 5 passes with R0+R1+R2+R3+R4+R5+R6+R7+R8
+• solved in 5 passes with R0+R1+R2+R3+R4+R5+R6+R7
+• solved in 5 passes with R0+R1+R2+R3+R4+R5+R6
+• solved in 5 passes with R0+R1+R2+R3+R4+R5
+• solved in 6 passes with R0+R1+R2+R3+R4
+• cannot solve without R4
+
+Rules 0123
+8-7-6-5-4
+----3517-
+3------9-
+----5--6-
+--3-1-4--
+-2--9----
+-4------6
+-3914----
+2-5-7-9-1
+Medium (SF Chronicle 3, 9/21/2022)
+• solved in 5 passes with R0+R1+R2+R3+R4+R5+R6+R7+R8
+• solved in 5 passes with R0+R1+R2+R3+R4+R5+R6+R7
+• solved in 5 passes with R0+R1+R2+R3+R4+R5+R6
+• solved in 5 passes with R0+R1+R2+R3+R4+R5
+• solved in 5 passes with R0+R1+R2+R3+R4
+• solved in 5 passes with R0+R1+R2+R3
+
+Rules 012345678
+4--6-23--
+----4---6
+----8--74
+----5--2-
+-56---98-
+-3--6----
+81--7----
+3---2----
+--73-4--8
+Hard (SF Chronicle 6, 8/20/2022)
+• solved in 5 passes with R0+R1+R2+R3+R4+R5+R6+R7+R8
+• solved in 5 passes with R0+R1+R2+R3+R4+R5+R6+R7
+• solved in 5 passes with R0+R1+R2+R3+R4+R5+R6
+• solved in 5 passes with R0+R1+R2+R3+R4+R5
+• cannot solve with only R0+R1+R2+R3+R4
+• solved in 5 passes with R0+R1+R2+R3+R5
+• solved in 6 passes with R0+R1+R2+R3+R6
+• solved in 5 passes with R0+R1+R2+R3+R7
+• solved in 7 passes with R0+R1+R2+R3+R8
+
+Rules 012345678
+--851-4--
+--1----5-
+-6927----
+----5---6
+1-------9
+4---2----
+----6253-
+-8----9--
+--2-837--
+Hard (SF Chronicle 5, 8/19/2022)
+• solved in 4 passes with R0+R1+R2+R3+R4+R5+R6+R7+R8
+• solved in 4 passes with R0+R1+R2+R3+R4+R5+R6+R7
+• solved in 4 passes with R0+R1+R2+R3+R4+R5+R6
+• solved in 4 passes with R0+R1+R2+R3+R4+R5
+• solved in 5 passes with R0+R1+R2+R3+R4
+• solved in 4 passes with R0+R1+R2+R3+R5
+• solved in 7 passes with R0+R1+R2+R3
+• solved in 7 passes with R0+R1+R2
+• solved in 7 passes with R0+R1
+
+
+Rules 012345678
+-4---2--9
+---68---7
+----4-5-2
+----14-9-
+--8-5-4--
+-5-39----
+8-2-3----
+6---28---
+4--5---1-
+Hard (SF Chronicle 5, 7/29/2022)
+• solved in 4 passes with R0+R1+R2+R3+R4+R5+R6+R7+R8
+• solved in 4 passes with R0+R1+R2+R3+R4+R5+R6+R7
+• solved in 4 passes with R0+R1+R2+R3+R4+R5+R6
+• solved in 4 passes with R0+R1+R2+R3+R4+R5
+• solved in 4 passes with R0+R1+R2+R3+R4
+• solved in 4 passes with R0+R1+R2+R3+R5
+• solved in 5 passes with R0+R1+R2+R3
+• solved in 5 passes with R0+R1+R2
+• solved in 6 passes with R0+R1
+
+Rules 01235
+----7-8-5
+-7-2---3-
+1-8-65--2
+-9--5----
+---937---
+----1--2-
+4--62-9-8
+-6---9-7-
+2-9-8----
+Hard (SF Chronicle 6, 7/8/2022)
+• solved in 6 passes with R0+R1+R2+R3+R4+R5+R6+R7+R8
+• solved in 6 passes with R0+R1+R2+R3+R4+R5+R6+R7
+• solved in 6 passes with R0+R1+R2+R3+R4+R5+R6
+• solved in 6 passes with R0+R1+R2+R3+R4+R5
+• solved in 6 passes with R0+R1+R2+R3+R5
+• cannot solve without R5
+
+Rules 012345678
+--6-9-41-
+---42--8-
+-1-----9-
+-9--4-12-
+7-------4
+-24-5--6-
+-7-----5-
+-3--18---
+-42-6-8--
+Medium (SF Chronicle 4, 7/7/2022)
+• solved in 4 passes with R0+R1+R2+R3+R4+R5+R6+R7+R8
+• solved in 4 passes with R0+R1+R2+R3+R4+R5+R6+R7
+• solved in 4 passes with R0+R1+R2+R3+R4+R5+R6
+• solved in 4 passes with R0+R1+R2+R3+R4+R5
+• solved in 4 passes with R0+R1+R2+R3+R5
+• solved in 4 passes with R0+R1+R2+R3
+• solved in 4 passes with R0+R1+R2
+
+Rules 12345678
 ---82-94-
 ----13---
 -3--9--5-
@@ -17,7 +485,29 @@ Hard (SF Chronicle 6, 5/21/2022)
 • solved in 9 passes with R0+R1+R2+R3+R6
 • solved in 9 passes with R0+R1+R2+R3+R4
 • solved in 9 passes with R0+R1+R2+R4
-• cannot solve without R4 or R6
+• cannot solve without R4
+
+Rules 012345678
+-8-69--5-
+-1--53---
+--5-----2
+---1---65
+5---7---8
+12---9---
+9-----7--
+---94--1-
+-4--85-9-
+Hard (SF Chronicle 5, 6/17/2022)
+• solved in 4 passes with R0+R1+R2+R3+R4+R5+R6+R7+R8
+• solved in 4 passes with R0+R1+R2+R3+R4+R5+R6+R7
+• solved in 4 passes with R0+R1+R2+R3+R4+R5+R6
+• solved in 4 passes with R0+R1+R2+R3+R4+R5
+• solved in 5 passes with R0+R1+R2+R3+R5
+• solved in 5 passes with R0+R1+R2+R3+R4
+• solved in 5 passes with R0+R1+R2+R3
+• solved in 5 passes with R0+R1+R2
+• solved in 6 passes with R0+R1
+• cannot solve with only R0
 
 Rules 012345678
 7---5---6
@@ -1769,7 +2259,7 @@ Easy (Chronicle #1):
 
 ===CANNOT SOLVE!!!======
 
-Rules 012345678
+Rules 0123456789
 -23-65-89
 9----4--5
 5--9-----
@@ -1780,33 +2270,18 @@ Rules 012345678
 8-7-2---3
 -96-5382-
 Very hard (Cracking the Cryptic: https://www.youtube.com/watch?v=SDTtcipqw7M)
-• Cannot solve with R0+R1+R2+R3+R4+R5+R6+R7+R8
+• Cannot solve with R0+R1+R2+R3+R4+R5+R6+R7+R8+R9 (stuck on pass 4)
 
-Rules 012345678
--------7-
---48-----
-1-946--3-
-4---1----
--5--2----
--1-3-64--
--------98
-5-----6-7
-2--1-----
-Very hard (Sudoku.com "expert")
-• Cannot solve with R0+R1+R2+R3+R4+R5+R6+R7+R8
-
-Rules 012345678
-9-4-6--8-
-8---1---2
-1--9---7-
-4-----5--
--16------
-7---31---
--3---7-9-
-6--2-4---
----------
-Super hard (Sudoku.com "expert")
-• Cannot solve with R0+R1+R2+R3+R4+R5+R6+R7+R8
+8-1--6-94
+3----9-8-
+97--8-5--
+547-62-3-
+632----5-
+198375246
+-8362-915
+-65198---
+2195----8
+• Cannot solve with R0+R1+R2+R3+R4+R5+R6+R7+R8+R9 (stuck on pass 2)
 
 Rules 012345678
 ---1-2---
@@ -1819,9 +2294,9 @@ Rules 012345678
 -7-----6-
 ---3-4---
 "Steering Wheel", extremely hard sudoku (Cracking the Cryptic: https://www.youtube.com/watch?v=Ui1hrp7rovw)
-• Cannot solve with R0+R1+R2+R3+R4+R5+R6+R7+R8
+• Cannot solve with R0+R1+R2+R3+R4+R5+R6+R7+R8+R9
 
-Rules 012345678
+Rules 0123456789
 --53-----
 8------2-
 -7--1-5--
@@ -1832,6 +2307,7 @@ Rules 012345678
 --4----3-
 -----97--
 World's hardest (by Arto Inkala)
-• Cannot solve with R0+R1+R2+R3+R4+R5+R6+R7+R8
+• Cannot solve with R0+R1+R2+R3+R4+R5+R6+R7+R8+R9
 
 =====END CANNOT SOLVE=======
+
