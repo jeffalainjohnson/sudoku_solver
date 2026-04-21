@@ -1,4 +1,18 @@
-Rules 0123456789
+Rules 0123456789AB
+-23-65-89
+9----4--5
+5--9-----
+6--3---18
+38-59---2
+----863--
+23------6
+8-7-2---3
+-96-5382-
+Very hard (Cracking the Cryptic: https://www.youtube.com/watch?v=SDTtcipqw7M)
+• Cannot solve with R0+R1+R2+R3+R4+R5+R6+R7+R8+R9 (stuck on pass 4)
+• Cannot solve with skyscraper + 2-string kite + XYZ-wing (stuck on pass 5)
+
+Rules 0123456789AB
 -9-4-----
 ----9-6--
 4-8--592-
@@ -8,11 +22,38 @@ Rules 0123456789
 -361--8-5
 --1-8----
 -----9-3-
-HARD (needs skyscraper method)
-• Cannot solve with R0+R1+R2+R3+R4+R5+R6+R7+R8
-• Cannot solve with Skyscraper v1 (stuck on pass 4)
+VERY HARD (needs skyscraper method)
+• Cannot solve with R0+R1+R2+R3+R4+R5+R6+R7+R8+R9
+• Cannot solve with Skyscraper + 2-string kite + XYZ-wing (stuck on pass 4)
 
-Rules 0123456789
+Rules 0123456789AB
+---1-2---
+-6-----7-
+--8---9--
+4-------3
+-5---7---
+2---8---1
+--9---8-5
+-7-----6-
+---3-4---
+"Steering Wheel", extremely hard sudoku (Cracking the Cryptic: https://www.youtube.com/watch?v=Ui1hrp7rovw)
+• Cannot solve with R0+R1+R2+R3+R4+R5+R6+R7+R8+R9 (stuck on pass 2)
+• Cannot solve with skyscraper + 2-string kite + XYZ-wing (stuck on pass 3)
+
+Rules 0123456789AB
+-87-95--3
+3-2-8----
+-51------
+----4----
+---3-69-2
+-34--8---
+-7----46-
+---4-----
+9-8----27
+VERY HARD (from Sudoku.coach/en/learn/two-string-kite)
+• Cannot solve with skyscraper + 2-string kite + XYZ-wing (stuck on pass 6)
+
+Rules 0123456789AB
 23-8--64-
 6-------2
 -7---29--
@@ -22,11 +63,68 @@ Rules 0123456789
 --14---3-
 7-------1
 -64--1-29
-HARD (needs skyscraper method)
-• Cannot solve with R0+R1+R2+R3+R4+R5+R6+R7+R8
-• Cannot solve with Skyscraper v1 (stuck on pass 5)
+VERY HARD (needs skyscraper method)
+• Cannot solve with R0+R1+R2+R3+R4+R5+R6+R7+R8+R9
+• Cannot solve with Skyscraper v1 + 2-string kite + XYZ-wing (stuck on pass 4)
 
-======Can solve with skyscraper=====
+Rules 0123456789AB
+8-1--6-94
+3----9-8-
+97--8-5--
+547-62-3-
+632----5-
+198375246
+-8362-915
+-65198---
+2195----8
+EXTREMELY HARD
+• Cannot solve with R0+R1+R2+R3+R4+R5+R6+R7+R8+R9 (stuck on pass 2)
+• Cannot solve with skyscraper + 2-string kite + XYZ-wing (stuck on pass 2)
+
+Rules 0123456789AB
+--53-----
+8------2-
+-7--1-5--
+4----53--
+-1--7---6
+--32---8-
+-6-5----9
+--4----3-
+-----97--
+World's hardest (by Arto Inkala)
+• Cannot solve with R0+R1+R2+R3+R4+R5+R6+R7+R8+R9 (stuck on pass 2)
+• Cannot solve with skyscraper + 2-string kite + XYZ-wing (stuck on pass 3)
+
+
+======SOLVES======
+
+Rules 0123456789A
+---123---
+--4---5--
+-6-----7-
+1--9----2
+3---1---4
+5----8--6
+-7-----8-
+--9---1--
+---234---
+Very hard (Best XYZ-Wing Video Ever! Sudoku Advanced Tutorial 32)
+• Stuck on Pass
+• Solves in 7 passes with XYZ-wing
+
+Rules 0123456789A
+--2--5---
+----3----
+--8-6-257
+1---53-9-
+---1---8-
+-4--8----
+-6-89-37-
+------42-
+--5------
+HARD (from Sudoku.coach/en/learn/two-string-kite)
+• Cannot solve with skyscraper v1
+• Solves in 8 passes with 2-string kite, with or without skyscraper
 
 Rules 0123456789
 9-4-6--8-
@@ -70,9 +168,7 @@ Super hard (Sudoku.com "expert"; requires skyscraper)
 • solved in 8 passes with R0+R1+R2+R3+R4+R5+R6+R7+R8+R9
 • Cannot solve with R0+R1+R2+R3+R4+R5+R6+R7+R8
 
-==========
-
-Rules 012345678
+Rules 0123458
 ----6-7--
 4----58-3
 --5--3-6-
@@ -86,7 +182,8 @@ Very hard (https://www.sudokuessentials.com/support-files/sudoku-very-hard-3.pdf
 Requires Y-wing.
 • solved in 7 passes with R0+R1+R2+R3+R4+R5+R6+R7+R8
 * solved in 6 passes with R0+R1+R2+R3+R4+R5+R6+R8 !!! Possible bug? (fewer w/out R7)
-• Cannot solve without R8
+* solved in 6 passes with R0+R1+R2+R3+R4+R5+R8 !!!
+• Cannot solve without R8 (y-wing)
 
 Rules 012345678
 ------9--
@@ -163,7 +260,37 @@ Hard (SF Chronicle 5, 12/27/2024)
 • solved in 5 passes with R0+R1+R2+R3+R4
 • cannot solve without rule 4
 
-Rules 0123
+Rules 012345
+39-------
+------65-
+--7---349
+--938---6
+----54---
+853------
+---8--1--
+--294--6-
+4-------7
+Naked Triple (Hodoku: https://hodoku.sourceforge.net/en/tech_naked.php)
+
+Rules 0123456789
+9----2-6-
+----915-3
+----8-92-
+-2--7---5
+--6---7--
+7---5--1-
+-19-2----
+2-391----
+-8-5----2
+Hard (SF Chronicle 5, 8/16/2024)
+• solved in 5 passes with R0+R1+R2+R3+R4
+• solved in 5 passes with R0+R1+R2+R3+R4+R5
+• solved in 5 passes with R0+R1+R2+R3+R4+R5+R6
+• solved in 5 passes with R0+R1+R2+R3+R4+R5+R6+R7
+• solved in 5 passes with R0+R1+R2+R3+R4+R5+R6+R7+R8
+• solved in 5 passes with R0+R1+R2+R3+R4+R5+R6+R7+R8+R9
+
+Rules 01234
 9----2-6-
 ----915-3
 ----8-92-
@@ -179,6 +306,19 @@ Hard (SF Chronicle 5, 8/16/2024)
 • solved in 5 passes with R0+R1+R2+R3+R4
 • solved in 5 passes with R0+R1+R2+R3
 
+Rules 0123
+9-8--5-23
+-------5-
+-4---9---
+---93---6
+-1--4----
+--2-8----
+--3-----5
+------2-9
+-8-4---3-
+Naked triple (https://www.foxy-sudoku.com/en/sudoku/techniques/naked-triple)
+• solved in 5 passes with R0+R1+R2+R3+R4
+• solved in 11 passes with R0+R1+R2+R3
 
 Rules 012345678
 --5-2-6--
@@ -288,7 +428,6 @@ Hard (SF Chronicle 5, 3/17/2023)
 • solved in 5 passes with R0+R1+R2+R3+R4+R5
 • solved in 5 passes with R0+R1+R2+R3+R4
 • cannot solve without R4
-
 
 Rules 012
 8-2-6----
@@ -2256,58 +2395,3 @@ Easy (Chronicle #1):
 • solved in 3 passes with R0 + R1 (R2 irrelevant; no pairs)
 • solved in 6 passes with R0 only
 • cannot solve with R1 only
-
-===CANNOT SOLVE!!!======
-
-Rules 0123456789
--23-65-89
-9----4--5
-5--9-----
-6--3---18
-38-59---2
-----863--
-23------6
-8-7-2---3
--96-5382-
-Very hard (Cracking the Cryptic: https://www.youtube.com/watch?v=SDTtcipqw7M)
-• Cannot solve with R0+R1+R2+R3+R4+R5+R6+R7+R8+R9 (stuck on pass 4)
-
-8-1--6-94
-3----9-8-
-97--8-5--
-547-62-3-
-632----5-
-198375246
--8362-915
--65198---
-2195----8
-• Cannot solve with R0+R1+R2+R3+R4+R5+R6+R7+R8+R9 (stuck on pass 2)
-
-Rules 012345678
----1-2---
--6-----7-
---8---9--
-4-------3
--5---7---
-2---8---1
---9---8-5
--7-----6-
----3-4---
-"Steering Wheel", extremely hard sudoku (Cracking the Cryptic: https://www.youtube.com/watch?v=Ui1hrp7rovw)
-• Cannot solve with R0+R1+R2+R3+R4+R5+R6+R7+R8+R9
-
-Rules 0123456789
---53-----
-8------2-
--7--1-5--
-4----53--
--1--7---6
---32---8-
--6-5----9
---4----3-
------97--
-World's hardest (by Arto Inkala)
-• Cannot solve with R0+R1+R2+R3+R4+R5+R6+R7+R8+R9
-
-=====END CANNOT SOLVE=======
-
