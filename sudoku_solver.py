@@ -23,29 +23,32 @@ def logic_rule_1(s, container):
 				container[tally_d[n][0]].set_possible([n])
 				s.set_changed()		# flag that we made a change
 				
-# Logic Rule 2: Naked pair -- Two cells with same 2 options eliminate those options elsewhere in container
+# Logic Rule 2: Naked pair -- Two cells in container with same 2 options eliminate those options elsewhere in container
 def logic_rule_2(s, container):
 	pair_list = [cell.get_possible() for cell in container if cell.number_of_options() == 2]
 	dup_pairs = set([tuple(pair) for pair in pair_list if pair_list.count(pair) == 2])
-	while len(dup_pairs) > 0:
+	while dup_pairs:
 		pair = list(dup_pairs.pop())
 		for cell in container:
 			cell_possible = cell.get_possible()
-			if cell_possible != pair and (pair[0] in cell_possible or pair[1] in cell_possible):
+			if cell_possible != pair and (set(pair) & set(cell_possible)):			
 				cell.remove_possible(pair)
 				s.set_changed()		# flag that we made a change
 
-# Logic Rule 3: Naked triple -- Three cells with same 3 options eliminate those options elsewhere in container
+# Logic Rule 3: Naked triple -- Three cells in container with only 3 options between them eliminate those options
+#								elsewhere in container
 def logic_rule_3(s, container):
-	trio_list = [cell.get_possible() for cell in container if cell.number_of_options() == 3]
-	dup_trios = set([tuple(trio) for trio in trio_list if trio_list.count(trio) == 3])
-	while len(dup_trios) > 0:
-		trio = list(dup_trios.pop())
-		for cell in container:
-			cell_possible = cell.get_possible()
-			if cell_possible != trio and (trio[0] in cell_possible or trio[1] in cell_possible or trio[2] in cell_possible):
-				cell.remove_possible(trio)
-				s.set_changed()		# flag that we made a change
+	duos_and_trios = [[cell, cell.get_possible()] for cell in container if cell.number_of_options() in {2, 3}]
+	if len(duos_and_trios) >= 3:						# Continue only if >= 3 possible cells
+		possible_trios = list(combinations(duos_and_trios, 3))	# Make all combinations of three possible cells
+		for trio in possible_trios:
+			trio_digits = set(trio[0][1]) | set(trio[1][1]) | set(trio[2][1])
+			if len(trio_digits) == 3:
+				for cell in container:					# Remove extra values from other cells in container
+					if cell != trio[0][0] and cell != trio[1][0] and cell != trio[2][0]:
+						if trio_digits & set(cell.get_possible()):		
+							cell.remove_possible(trio_digits)
+							s.set_changed()		# flag that we made a change
 
 # Logic Rule 4: Hidden n-ples -- If N numbers are confined to N cells in a container, other options in those cells
 #				(not so confined) can be eliminated
@@ -122,9 +125,9 @@ def logic_rule_6(s, rows, cols, direction):		# direction parameter used only to 
 				if n in tally_d_list_pairs[j] and tally_d_list_pairs[j][n] == tally_d_list_pairs[i][n]:
 					print("Found X-wing!")
 					if direction == 'r':
-						print("{} is in cols {} and {} of rows {} and {}".format(n, tally_d_list_pairs[i][n][0], tally_d_list_pairs[i][n][1], i, j))
+						print("  {} is in cols {} and {} of rows {} and {}".format(n, tally_d_list_pairs[i][n][0], tally_d_list_pairs[i][n][1], i, j))
 					else:
-						print("{} is in rows {} and {} of cols {} and {}".format(n, tally_d_list_pairs[i][n][0], tally_d_list_pairs[i][n][1], i, j))
+						print("  {} is in rows {} and {} of cols {} and {}".format(n, tally_d_list_pairs[i][n][0], tally_d_list_pairs[i][n][1], i, j))
 					#Delete the candidate digit from other cells in the two cols
 					col_l = cols[tally_d_list_pairs[j][n][0]]	# Left col (or upper row)
 					cell_list_l = [col_l[i], col_l[j]]
@@ -153,9 +156,9 @@ def logic_rule_7(s, rows, cols, direction):		# direction parameter used only to 
 							if len(col_list) == 3:
 								print("Found swordfish!")
 								if direction == 'r':
-									print("{} is in cols {} of rows {}, {}, and {}".format(n, col_list, i, j, k))
+									print("  {} is in cols {} of rows {}, {}, and {}".format(n, col_list, i, j, k))
 								else:
-									print("{} is in rows {} of cols {}, {}, and {}".format(n, col_list, i, j, k))
+									print("  {} is in rows {} of cols {}, {}, and {}".format(n, col_list, i, j, k))
 								#Delete the candidate digit from other cells in the three cols
 								col_l = cols[col_list[0]]	# Left col (or top row)
 								cell_list_l = [col_l[i], col_l[j], col_l[k]]
@@ -172,37 +175,26 @@ def logic_rule_7(s, rows, cols, direction):		# direction parameter used only to 
 #				eliminated from any other cell that sees both cells B and C.
 def logic_rule_8(s):
 	rows = s.get_rows()
-	cols = s.get_cols()
-	boxes = s.get_boxes()
 	pair_cells = []
-	for row in rows:
+	for row in rows:	# Make a list of all cells containing two candidates
 		pair_cells.extend([cell for cell in row if cell.number_of_options() == 2])
 	for cell in pair_cells: # search cell's containers for pair-cells sharing 1 of its 2 options
-		if cell.number_of_options() != 2:	# Needed because pair-cells may lose options during this loop
-			continue
-		possible_wing_cells = [c for c in pair_cells if cell.sees(c) and len(c.get_possible()) == 2 and len(set(cell.get_possible()) & set(c.get_possible())) == 1]
-		# search possible_wing_cells for two that don't see each other, and one has x, one has y, and they both have z
-		# if only two possible wing cells, check if they see each other, and if not, if one has x, the other has y
-		for i in range(len(possible_wing_cells)):
-			for j in range(i+1, len(possible_wing_cells)):
-				if len(set(cell.get_possible()) | set(possible_wing_cells[i].get_possible()) | set(possible_wing_cells[j].get_possible())) == 3:
-					if not possible_wing_cells[i].sees(possible_wing_cells[j]) and possible_wing_cells[i].get_possible() != possible_wing_cells[j].get_possible():
-						print("Found Y-wing!")
-						print("  Wing cells: ", possible_wing_cells[i], possible_wing_cells[j])
-						z = list(set(possible_wing_cells[i].get_possible()) & set(possible_wing_cells[j].get_possible()))
-						print("z =", z[0])
-						# Get list of cells both wing-cells can affect.
-						# List cells that each wing-cell can see, convert to sets and take intersection.
-						possible_affected_cells = list(can_see(s, possible_wing_cells[i]) & can_see(s, possible_wing_cells[j]))
-						affected_cells = [c for c in possible_affected_cells if c.number_of_options() > 1 and c.is_possible(z[0])]
-						if affected_cells:
-							for c in affected_cells:
-								print("  Affected cell before:", c, end = " ")
-								c.remove_possible(z)
-								s.set_changed()		# note that we made a change
-								print("  After:", c)
-						else:
-							print("  No affected cells.")
+		if cell.number_of_options() == 2:	# Needed because pair-cells may lose options during this loop
+			possible_wing_cells = [c for c in pair_cells if cell.sees(c) and len(c.get_possible()) == 2 and len(set(cell.get_possible()) & set(c.get_possible())) == 1]
+			# search possible_wing_cells for two that don't see each other, and one has x, one has y, and they both have z
+			# if only two possible wing cells, check if they see each other, and if not, if one has x, the other has y
+			for i in range(len(possible_wing_cells)):
+				for j in range(i+1, len(possible_wing_cells)):
+					if len(set(cell.get_possible()) | set(possible_wing_cells[i].get_possible()) | set(possible_wing_cells[j].get_possible())) == 3:
+						if not possible_wing_cells[i].sees(possible_wing_cells[j]) and possible_wing_cells[i].get_possible() != possible_wing_cells[j].get_possible():
+							print("Found Y-wing!")
+							print("  Wing cells: ", possible_wing_cells[i], possible_wing_cells[j])
+							z = list(set(possible_wing_cells[i].get_possible()) & set(possible_wing_cells[j].get_possible()))
+							print("  z =", z[0])
+							# Get list of cells both wing-cells can affect.
+							# List cells that each wing-cell can see, convert to sets and take intersection.
+							possible_affected_cells = list(can_see(s, possible_wing_cells[i]) & can_see(s, possible_wing_cells[j]))
+							eliminate_n_in_affected_cells(s, z[0], possible_affected_cells)
 
 # Logic Rule 9: Skyscraper -- Find two columns (or rows) that contain a conjugate pair of the same digit as candidates.
 #				If two of those candidate digits are in the same row (or column), they form the "base" of the skyscraper
@@ -210,7 +202,6 @@ def logic_rule_8(s):
 #				one of the two roof cells will be the candidate digit, so that digit can be eliminated in any other cell 
 #				that sees both roof cells.
 def logic_rule_9(s, cols, rows, direction):
-	boxes = s.get_boxes()
 	tally_d_list = [make_tally_d(col) for col in cols]  #make a tally_d_list for every col
 	tally_d_list_pairs = [{},{},{},{},{},{},{},{},{}]   #create list of empty sets for recording conjugate pairs
 	for i in range(9):
@@ -250,20 +241,134 @@ def logic_rule_9(s, cols, rows, direction):
 						#Delete candidate digit from cells that see both roof cells
 						# List cells that each roof-cell can see, convert to sets and take intersection.
 						possible_affected_cells = list((can_see(s, roof_cells[0]) & can_see(s, roof_cells[1])) - set(roof_cells))
-						affected_cells = [c for c in possible_affected_cells if c.number_of_options() > 1 and c.is_possible(n)]
-						if affected_cells != []:
-							if roof_cells[0].sees(roof_cells[1]):
-								print("###Roof cells in same box.")
-							for c in affected_cells:
-								print("**Affected cell before:", c, end = " ")
-								print("  Removing digit {}.".format(n))
-								c.remove_possible([n])
-								s.set_changed()		# note that we made a change
-								print("  After:", c)
-						else:
-							print("  No affected cells.")
+						eliminate_n_in_affected_cells(s, n, possible_affected_cells)
+						if roof_cells[0].sees(roof_cells[1]):	#If roof cells are in same box, only one is true, so one of the
+																# base cells is true, so delete n from other cells that see both
+							possible_affected_cells = list((can_see(s, base_cells[0]) & can_see(s, base_cells[1])) - set(base_cells))
+							eliminate_n_in_affected_cells(s, n, possible_affected_cells)
+		
+# Logic Rule A: Two-String Kite -- Two perpendicular conjugate pairs that end in the same box (but not in same cell)
+#				that share a digit allow that digit to be eliminated in any cell that sees the
+#				other ends of both conjugate pairs.
+def logic_rule_A(s):
+	cols = s.get_cols()
+	rows = s.get_rows()
+	tally_d_list_cols = [make_tally_d(col) for col in cols]  # Make a tally_d_list for every col
+	conj_pairs_cols_cells = [{},{},{},{},{},{},{},{},{}]
+	tally_d_list_rows = [make_tally_d(row) for row in rows]  # Make a tally_d_list for every row
+	conj_pairs_rows_cells = [{},{},{},{},{},{},{},{},{}]
+	for i in range(9):
+		for n in tally_d_list_cols[i]:
+			if len(tally_d_list_cols[i][n]) == 2:	# Find all n that occur 2x in col (conj pairs) in separate boxes
+				cp_row = tally_d_list_cols[i][n]
+				cell1 = s.get_cell(cp_row[0], i)
+				cell2 = s.get_cell(cp_row[1], i)
+				if cell1.get_box() != cell2.get_box():#					conj_pairs_cols[i][n] = tally_d_list_cols[i][n]
+					conj_pairs_cols_cells[i][n] = [cell1, cell2]
+		for n in tally_d_list_rows[i]:
+			if len(tally_d_list_rows[i][n]) == 2:	# Find all n that occur 2x in row (conj pairs) in separate boxes
+				cp_col = tally_d_list_rows[i][n]
+				cell1 = s.get_cell(i, cp_col[0])
+				cell2 = s.get_cell(i, cp_col[1])
+				if cell1.get_box() != cell2.get_box():
+					conj_pairs_rows_cells[i][n] = [cell1, cell2]
+	for i in range (9):
+		for n_in_col in conj_pairs_cols_cells[i]:
+			col_cell1 = conj_pairs_cols_cells[i][n_in_col][0]
+			col_cell2 = conj_pairs_cols_cells[i][n_in_col][1]
+			for j in range(9):
+				for n_in_row in conj_pairs_rows_cells[j]:
+					if n_in_col == n_in_row:
+						row_cell1 = conj_pairs_rows_cells[j][n_in_row][0]
+						row_cell2 = conj_pairs_rows_cells[j][n_in_row][1]
+						if col_cell1 != row_cell1 and col_cell1 != row_cell2 and col_cell2 != row_cell1 and col_cell2 != row_cell2:
+							if col_cell1.get_box() == row_cell1.get_box():
+								print("1. Fulcrum of 2-string kite. Digit:", n_in_col, " Col cell:", col_cell1, "Row cell:", row_cell1, "Box:", col_cell1.get_box())
+								target_cell = s.get_cell(col_cell2.get_row(), row_cell2.get_col())
+								print("   Target cell:", target_cell)
+								if target_cell.is_possible(n_in_col):
+									target_cell.remove_possible([n_in_col])
+									s.set_changed()
+									print("   Target cell after:", target_cell)
+								else:
+									print("   No effect.")
+							elif col_cell1.get_box() == row_cell2.get_box():
+								print("2. Fulcrum of 2-string kite. Digit:", n_in_col, " Col cell:", col_cell1, "Row cell:", row_cell2, "Box:", col_cell1.get_box())
+								target_cell = s.get_cell(col_cell2.get_row(), row_cell1.get_col())
+								print("   Target cell:", target_cell)
+								if target_cell.is_possible(n_in_col):
+									target_cell.remove_possible([n_in_col])
+									s.set_changed()
+									print("   Target cell after:", target_cell)
+								else:
+									print("   No effect.")
+							elif col_cell2.get_box() == row_cell1.get_box():
+								print("3. Fulcrum of 2-string kite. Digit:", n_in_col, " Col cell:", col_cell2, "Row cell:", row_cell1, "Box:", col_cell2.get_box())
+								target_cell = s.get_cell(col_cell1.get_row(), row_cell2.get_col())
+								print("   Target cell:", target_cell)
+								if target_cell.is_possible(n_in_col):
+									target_cell.remove_possible([n_in_col])
+									s.set_changed()
+									print("   Target cell after:", target_cell)
+								else:
+									print("   No effect.")
+							elif col_cell2.get_box() == row_cell2.get_box():
+								print("4. Fulcrum of 2-string kite. Digit:", n_in_col, " Col cell:", col_cell2, "Row cell:", row_cell2, "Box:", col_cell2.get_box())
+								target_cell = s.get_cell(col_cell1.get_row(), row_cell1.get_col())
+								print("   Target cell:", target_cell)
+								if target_cell.is_possible(n_in_col):
+									target_cell.remove_possible([n_in_col])
+									s.set_changed()
+									print("   Target cell after:", target_cell)
+								else:
+									print("   No effect.")
+							else:
+								continue
+
+# Logic Rule B: XYZ-Wing -- Find a trio and subset pair in the same box, with a pair in the same row or col
+#				as the trio that is a different subset of the trio.  Eliminate the shared digit in any cell
+#				that sees all three cells.
+def logic_rule_B(s):
+	cols = s.get_cols()
+	rows = s.get_rows()
+	boxes = s.get_boxes()
+	for box in boxes:
+		trio_cells = [cell for cell in box if cell.number_of_options() == 3]
+		for trio_cell in trio_cells:
+			duo_cells_near_trio_cell = [cell for cell in box if cell.number_of_options() == 2 and set(cell.get_possible()) < set(trio_cell.get_possible())]
+			for duo_cell in duo_cells_near_trio_cell:
+				pivot_col = trio_cell.get_col()
+				pivot_row = trio_cell.get_row()
+				if duo_cell.get_col() != pivot_col:
+					other_duo_cells = [cell for cell in cols[pivot_col] if cell.number_of_options() == 2 and set(cell.get_possible()) < set(trio_cell.get_possible()) and cell.get_possible() != duo_cell.get_possible()]
+					XYZwing_final_test(s, trio_cell, duo_cell, other_duo_cells, pivot_col, "col")
+				if duo_cell.get_row() != pivot_row:
+					other_duo_cells = [cell for cell in rows[pivot_row] if cell.number_of_options() == 2 and set(cell.get_possible()) < set(trio_cell.get_possible()) and cell.get_possible() != duo_cell.get_possible()]
+					XYZwing_final_test(s, trio_cell, duo_cell, other_duo_cells, pivot_row, "row")
+
+def XYZwing_final_test(s, trio_cell, duo_cell, other_duo_cells, pivot, orientation):	# Common code to col & row orientations
+	if other_duo_cells:
+		other_duo_cell = other_duo_cells[0]
+		print("*** Found XYZ-wing in", orientation, pivot)
+		print("  Pivot:", trio_cell, "Near wing:", duo_cell, "Far wing:", other_duo_cell)
+		n = (set(duo_cell.get_possible()) & set(other_duo_cell.get_possible())).pop()
+		print("  n:", n)
+		possible_affected_cells = list(can_see(s, trio_cell) & can_see(s, duo_cell) & can_see(s, other_duo_cell) - {trio_cell, duo_cell, other_duo_cell})
+		# Alternate way to find possible affected cells: trio_cell's box & trio_cell's row/col - trio_cell
+		eliminate_n_in_affected_cells(s, n, possible_affected_cells)
 
 ### Utility functions
+
+def eliminate_n_in_affected_cells(s, n, possible_affected_cells):
+	affected_cells = [c for c in possible_affected_cells if c.number_of_options() > 1 and c.is_possible(n)]
+	if affected_cells:
+		for c in affected_cells:
+			print("  Affected cell before:", c, end = " ")
+			c.remove_possible([n])
+			s.set_changed()		# note that we made a change
+			print("  After:", c)
+	else:
+		print("  No affected cells.")
 
 def eliminate_elsewhere_in_container(s, n, save_cell_list, container):
 	for cell in container:
@@ -279,8 +384,8 @@ def make_tally_d(container):
 			d[cell_options[k]].append(j)
 	return d
 
-def can_see(s, cell):	#Returns set of all cells this cell can see. Probably should be a sudoku method
-	return set(s.get_rows()[cell.get_row()]) | set(s.get_cols()[cell.get_col()]) | set(s.get_boxes()[cell.get_box()])
+def can_see(s, cell):	#Returns set of all cells this cell can see. Probably should be a sudoku or cell method
+	return set(s.get_rows()[cell.get_row()]) | set(s.get_cols()[cell.get_col()]) | set(s.get_boxes()[cell.get_box()]) - {cell}
 
 
 ### Main driver
@@ -305,7 +410,7 @@ def main():
 		s.clear_changed()			# Clear change-flag for this pass
 		print("Pass", passes)
 
-# On each cycle, invoke whichever of these Sudoku Deduction Patterns is allowed for this run
+# On each pass, look for Sudoku Deduction Patterns allowed for this run
 		if "0" in rules_to_use:			# Apply Logic Rule 0?  (Naked Single)
 			for i in range(9):
 				logic_rule_0(s, s.rows[i])	#These should probably be s.get_rows()[i]
@@ -354,20 +459,28 @@ def main():
 			for i in range(9):			# comment out to interleave applying rules to rows, cols, boxes
 				logic_rule_5b(s, s.boxes[i], s.rows, s.cols)
 
+# Advanced Sudoku Deduction Patterns; not sought on first pass
+
 		if "6" in rules_to_use and passes > 1:  	# Apply Logic Rule 6? (X-wing)
 			logic_rule_6(s, s.rows, s.cols, 'r')	# Look for X-wings in rows
 			logic_rule_6(s, s.cols, s.rows, 'c')	# Look for X-wings in columns
 
-		if "7" in rules_to_use and passes > 1:			# Apply Logic Rule 7? (Swordfish)
+		if "7" in rules_to_use and passes > 1:		# Apply Logic Rule 7? (Swordfish)
 			logic_rule_7(s, s.rows, s.cols, 'r')	# Look for Swordfish in rows
 			logic_rule_7(s, s.cols, s.rows, 'c')	# Look for Swordfish in columns
 
-		if "8" in rules_to_use and passes > 1:			# Apply Logic Rule 8? (Y-wing)
+		if "8" in rules_to_use and passes > 1:		# Apply Logic Rule 8? (Y-wing)
 			logic_rule_8(s)
 
-		if "9" in rules_to_use and passes > 1:  		# Apply Logic Rule 9? (skyscraper)
+		if "9" in rules_to_use and passes > 1:  	# Apply Logic Rule 9? (Skyscraper)
 			logic_rule_9(s, s.cols, s.rows, 'c')	# Look for skyscraper in columns
 			logic_rule_9(s, s.rows, s.cols, 'r')	# Look for skyscraper in rows
+
+		if "A" in rules_to_use and passes > 1:  	# Apply Logic Rule A (Two-string Kite)
+			logic_rule_A(s)
+
+		if "B" in rules_to_use and passes > 1:  	# Apply Logic Rule B (XYZ-wing)
+			logic_rule_B(s)
 
 		s.print_sudoku(s.rows)
 
@@ -381,4 +494,3 @@ def main():
 			continue
 
 main()
-
