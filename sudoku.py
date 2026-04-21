@@ -125,6 +125,7 @@ class Cell:
 		return (self.__row_num % 3) * 3 + (self.__col_num % 3)
 
 	def sees(self, other_cell):
-		return self.__row_num == other_cell.get_row() or self.__col_num == other_cell.get_col() or self.get_box() == other_cell.get_box()
-
-	
+		if self == other_cell:
+			return False
+		else:
+			return self.__row_num == other_cell.get_row() or self.__col_num == other_cell.get_col() or self.get_box() == other_cell.get_box()
