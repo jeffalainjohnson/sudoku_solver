@@ -284,46 +284,27 @@ def logic_rule_A(s):
 						if col_cell1 != row_cell1 and col_cell1 != row_cell2 and col_cell2 != row_cell1 and col_cell2 != row_cell2:
 							if col_cell1.get_box() == row_cell1.get_box():
 								print("1. Fulcrum of 2-string kite. Digit:", n_in_col, " Col cell:", col_cell1, "Row cell:", row_cell1, "Box:", col_cell1.get_box())
-								target_cell = s.get_cell(col_cell2.get_row(), row_cell2.get_col())
-								print("   Target cell:", target_cell)
-								if target_cell.is_possible(n_in_col):
-									target_cell.remove_possible([n_in_col])
-									s.set_changed()
-									print("   Target cell after:", target_cell)
-								else:
-									print("   No effect.")
+								two_string_finish(s, n_in_col, col_cell2, row_cell2)
 							elif col_cell1.get_box() == row_cell2.get_box():
 								print("2. Fulcrum of 2-string kite. Digit:", n_in_col, " Col cell:", col_cell1, "Row cell:", row_cell2, "Box:", col_cell1.get_box())
-								target_cell = s.get_cell(col_cell2.get_row(), row_cell1.get_col())
-								print("   Target cell:", target_cell)
-								if target_cell.is_possible(n_in_col):
-									target_cell.remove_possible([n_in_col])
-									s.set_changed()
-									print("   Target cell after:", target_cell)
-								else:
-									print("   No effect.")
+								two_string_finish(s, n_in_col, col_cell2, row_cell1)
 							elif col_cell2.get_box() == row_cell1.get_box():
 								print("3. Fulcrum of 2-string kite. Digit:", n_in_col, " Col cell:", col_cell2, "Row cell:", row_cell1, "Box:", col_cell2.get_box())
-								target_cell = s.get_cell(col_cell1.get_row(), row_cell2.get_col())
-								print("   Target cell:", target_cell)
-								if target_cell.is_possible(n_in_col):
-									target_cell.remove_possible([n_in_col])
-									s.set_changed()
-									print("   Target cell after:", target_cell)
-								else:
-									print("   No effect.")
+								two_string_finish(s, n_in_col, col_cell1, row_cell2)
 							elif col_cell2.get_box() == row_cell2.get_box():
 								print("4. Fulcrum of 2-string kite. Digit:", n_in_col, " Col cell:", col_cell2, "Row cell:", row_cell2, "Box:", col_cell2.get_box())
-								target_cell = s.get_cell(col_cell1.get_row(), row_cell1.get_col())
-								print("   Target cell:", target_cell)
-								if target_cell.is_possible(n_in_col):
-									target_cell.remove_possible([n_in_col])
-									s.set_changed()
-									print("   Target cell after:", target_cell)
-								else:
-									print("   No effect.")
+								two_string_finish(s, n_in_col, col_cell1, row_cell1)
 							else:
 								continue
+
+#Two-String Kite Common code to all four cases
+def two_string_finish(s, n, col_cell, row_cell):
+	target_cell = s.get_cell(col_cell.get_row(), row_cell.get_col())
+	print("   Target cell:", target_cell)
+	if target_cell.is_possible(n):
+		target_cell.remove_possible([n])
+		s.set_changed()
+		print("   Target cell after:", target_cell)
 
 # Logic Rule B: XYZ-Wing -- Find a trio and subset pair in the same box, with a pair in the same row or col
 #				as the trio that is a different subset of the trio.  Eliminate the shared digit in any cell
@@ -346,7 +327,8 @@ def logic_rule_B(s):
 					other_duo_cells = [cell for cell in rows[pivot_row] if cell.number_of_options() == 2 and set(cell.get_possible()) < set(trio_cell.get_possible()) and cell.get_possible() != duo_cell.get_possible()]
 					XYZwing_final_test(s, trio_cell, duo_cell, other_duo_cells, pivot_row, "row")
 
-def XYZwing_final_test(s, trio_cell, duo_cell, other_duo_cells, pivot, orientation):	# Common code to col & row orientations
+# XYZ-Wing Common code to col & row orientations
+def XYZwing_final_test(s, trio_cell, duo_cell, other_duo_cells, pivot, orientation):
 	if other_duo_cells:
 		other_duo_cell = other_duo_cells[0]
 		print("*** Found XYZ-wing in", orientation, pivot)
